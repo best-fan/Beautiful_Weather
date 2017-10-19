@@ -10,8 +10,9 @@
 * 定位数据:高德地图
 ## 项目技术
 * MVP架构
-* OKhttp
+* OKhttp  
 * Fastson
+* AndPermission
 * 自定义View
 ## APP下载
 [app-debug.apk](https://github.com/best-fan/Beautiful_Weather/blob/master/app/app-debug.apk)
