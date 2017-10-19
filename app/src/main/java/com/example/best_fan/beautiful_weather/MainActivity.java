@@ -11,7 +11,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -33,6 +35,7 @@ import com.example.best_fan.beautiful_weather.adapter.WeatherAdapter;
 import com.example.best_fan.beautiful_weather.bean.ForecastBean;
 import com.example.best_fan.beautiful_weather.bean.NowBean;
 import com.example.best_fan.beautiful_weather.utils.AnimationUtils;
+import com.example.best_fan.beautiful_weather.utils.ToastUtil;
 import com.example.best_fan.beautiful_weather.utils.WeatherUtils;
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -449,6 +452,37 @@ public class MainActivity extends AppCompatActivity implements MvpMainView{
     private int getStatusBarHeight(Context context) {
         int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
         return context.getResources().getDimensionPixelSize(resourceId);
+    }
+
+//    @Override
+//    public void onBackPressed() {
+//        super.onBackPressed();
+//        showToast("触发返回");
+//    }
+
+    /**
+     *  @author Administrator
+     *  @date   2017/10/19
+     *  @time   13:15
+     *  @describe Android按返回键退出程序但不销毁
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            moveTaskToBack(true);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+      //  return super.onCreateOptionsMenu(menu);
+        for (int i=1;i<8;i++){
+            menu.add(10,i,1,"菜单"+i);
+        }
+
+        return  true;
     }
 }
 

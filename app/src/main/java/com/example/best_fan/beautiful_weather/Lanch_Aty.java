@@ -1,9 +1,13 @@
 package com.example.best_fan.beautiful_weather;
 
+import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -17,8 +21,14 @@ import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.example.best_fan.beautiful_weather.adapter.WeatherAdapter;
 import com.example.best_fan.beautiful_weather.adapter.AMapListener;
+import com.yanzhenjie.permission.AndPermission;
+import com.yanzhenjie.permission.PermissionListener;
+import com.yanzhenjie.permission.SettingService;
+
+import java.util.List;
 
 public class Lanch_Aty extends AppCompatActivity {
+    private static final int REQUEST_CODE_PERMISSION = 100;
     private WeatherAdapter weatherAdapter;
     //声明AMapLocationClient类对象
     public AMapLocationClient mLocationClient = null;
@@ -32,6 +42,20 @@ public class Lanch_Aty extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lanch__aty);
         init();
+        AndPermission.with(Lanch_Aty.this)
+                .requestCode(REQUEST_CODE_PERMISSION)
+                .permission(
+                        Manifest.permission.ACCESS_COARSE_LOCATION,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_PHONE_STATE)
+                .callback(permissionListener)
+                .start();
+
+
+    }
+
+    private void animatorStart() {
         //开始定位
         mLocationClient.startLocation();
         // 第一个参数－－－target:你要对哪个View绑定动画－－－今天我们要对ImageView绑定动画
@@ -46,10 +70,8 @@ public class Lanch_Aty extends AppCompatActivity {
         objectAnimator.setDuration(5000);
         // 启动动画
         objectAnimator.start();
-
-
-
     }
+
     private void init(){
         //初始化定位
         mLocationClient = new AMapLocationClient(getApplicationContext());
@@ -135,6 +157,70 @@ public class Lanch_Aty extends AppCompatActivity {
 
         }
     }
+    /**
+     *  @author Administrator
+     *  @date   2017/10/19
+     *  @time   16:23
+     *  @describe 权限申请 监听回调
+     */
+    private PermissionListener permissionListener = new PermissionListener() {
+        @Override
+        public void onSucceed(int requestCode, @NonNull List<String> grantPermissions) {
+            switch (requestCode) {
+                case REQUEST_CODE_PERMISSION: {
+                    //Toast.makeText(Lanch_Aty.this, "权限申请成功", Toast.LENGTH_SHORT).show();
+                    //启动动画
+                    animatorStart();
+                    break;
+                }
+            }
+
+        }
+
+        @Override
+        public void onFailed(int requestCode, @NonNull List<String> deniedPermissions) {
+            switch (requestCode) {
+                case REQUEST_CODE_PERMISSION: {
+                    Toast.makeText(Lanch_Aty.this,"权限申请失败", Toast.LENGTH_SHORT).show();
+                    break;
+                }
+            }
+            // 用户否勾选了不再提示并且拒绝了权限，那么提示用户到设置中授权。
+            if (AndPermission.hasAlwaysDeniedPermission(Lanch_Aty.this, deniedPermissions)) {
+
+                // 第三种：自定义dialog样式。
+                final SettingService settingService = AndPermission.defineSettingDialog(Lanch_Aty.this, 400);
+
+
+
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(Lanch_Aty.this);
+                builder.setTitle("权限申请失败");
+                builder.setMessage("我们需要的一些权限被您拒绝了或者系统发生错误导致申请失败，请您到设置页面手动授权，否则软件将无法正常运行");
+                builder.setNegativeButton("退出软件", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // 你的dialog点击了取消调用：
+                        System.exit(0);
+
+                    }
+                });
+                builder.setPositiveButton("好，去设置", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // 你的dialog点击了确定调用：
+                        settingService.execute();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+
+
+        }
+
+    };
+
 
     @Override
     protected void onDestroy() {

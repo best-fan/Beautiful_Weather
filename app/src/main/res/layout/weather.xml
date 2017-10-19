@@ -35,7 +35,7 @@
   <TextView
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:text="小樊工作室出品|V17.9.24"
+      android:text="小樊工作室出品|V17.10.19"
       android:gravity="center"
       android:textColor="@android:color/white"
       android:layout_marginTop="-21dp"
@@ -43,6 +43,7 @@
     <!--
         V1.1 8.17
         V1.2 9.24
+        V2.1 10.19
     -->
 
 
