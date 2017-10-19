@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:wcv="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#4ba7e1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:id="@+id/tv_aqi"
+            android:layout_width="50dp"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:background="@drawable/view_bg"
+            android:text="null"/>
+        <TextView
+        android:id="@+id/tv_updatetime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
+            android:gravity="right"
+        android:textColor="#e9e6e6"
+        android:text="刚刚发布"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_alert"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_width="100dp"
+            android:gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:background="@drawable/view_bg"
+            android:visibility="invisible"
+            android:onClick="onclick"
+            android:text="高温黄色预警"/>
+        <TextView
+            android:id="@+id/tv_aler1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="100dp"
+            android:gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:background="@drawable/view_bg"
+            android:textColor="@android:color/white"
+            android:visibility="invisible"
+            android:onClick="onclick"            android:text="高温黄色预警"/>
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_tempe"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:text="null"
+            android:textColor="#ffffff"
+            android:textSize="90sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="-3dp"
+            android:text="°C"
+            android:textColor="#ffffff"
+            android:textSize="25dp" />
+    </LinearLayout>
+
+    <com.example.best_fan.beautiful_weather.MVP.UpDownTextView
+        android:id="@+id/tv_weatherinfor"
+        android:layout_marginTop="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+       >
+
+    </com.example.best_fan.beautiful_weather.MVP.UpDownTextView>
+    <TextView
+        android:id="@+id/tv_hd"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100px"
+        android:textColor="#ffffff"
+        android:textSize="13dp"
+        android:text="null"/>
+
+
+
+    <com.example.best_fan.beautiful_weather.MVP.DailyForecastView
+        android:id="@+id/line_char"
+        android:layout_marginTop="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        wcv:textSize="16dp"
+        wcv:twohourtextSize="11sp"
+        wcv:dayColor="@color/colorwhite"
+        />
+    <include
+        layout="@layout/weather"></include>
+
+
+
+</LinearLayout>

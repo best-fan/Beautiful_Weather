@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/weather"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginTop="30dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4ba7e1"
+    android:orientation="vertical">
+  <View
+      android:layout_height="20dp"
+      android:layout_width="match_parent"
+      android:background="#35f1f5f7"
+      android:layout_marginBottom="2px"
+      />
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="未来天气"
+      android:layout_marginTop="-19dp"
+      android:layout_marginLeft="5dp"/>
+  <ListView
+      android:id="@+id/mylistview"
+      android:layout_marginTop="5dp"
+      android:layout_width="match_parent"
+      android:layout_height="300dp"
+      android:divider="#00000000"></ListView>
+  <View
+      android:layout_height="20dp"
+      android:layout_width="match_parent"
+      android:background="#35f1f5f7"
+      android:layout_marginTop="3dp"
+      android:layout_marginBottom="5px"
+      />
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="小樊工作室出品|V17.9.24"
+      android:gravity="center"
+      android:textColor="@android:color/white"
+      android:layout_marginTop="-21dp"
+      android:layout_marginLeft="5dp"/>
+    <!--
+        V1.1 8.17
+        V1.2 9.24
+    -->
+
+
+</LinearLayout>

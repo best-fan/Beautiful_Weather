@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorwhite">#ffffff</color>
+    <color name="chengse">#bc2421</color>
+    <color name="coloryellow">#f9ec57</color>
+    <color name="colorblue">#4f9dde</color>
+</resources>
